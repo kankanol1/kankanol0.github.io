@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html{
+            height: 100%;/*相对父级的高度*/
+        }
+        body{
+            height:100%;
+            width: 600px;
+            margin: 0;
+            background: -webkit-gradient(linear,0% 0%,0% 100%,
+            from(rgba(13,52,58,1)),to(#000));
+            overflow: hidden;
+        }
+        .drop {
+            width: 1px;
+            height: 90px;
+            background: red;
+            margin-left: 50px;
+            background: -webkit-gradient(linear, 0% 0%, 0% 100%,
+            from(rgba(10, 20,50, 1)), to(rgba(255, 255, 255, .7)));
+            position: absolute;
+            animation: move 4s infinite;
+        }
+            @keyframes move {
+                to{
+                    margin-top:900px;
+                }
+            }
+    </style>
+</head>
+<body>
+<div class="box">
+</div>
+<script src="jquery-1.10.2.min.js"></script>
+<script>
+
+/*
+创建雨滴
+   拓展雨滴的功能
+动画思路：
+     什么元素用什么事件实现神峨眉功能
+
+*/
+
+var nDrop = 858;
+function random(minNum,maxNum) {
+    return Math.floor(Math.random() * (maxNum - minNum +1)) + minNum;
+}
+function createRain(){
+    for(var i=0;i<nDrop;i++ ){
+        var dropLeft=random(0,1600);
+        var dropTop=random(-1000,2000);
+        $('.box').append('<div class="drop" id="drop'+i+'"></div>');
+        $('#drop'+i).css('left', dropLeft);
+        $('#drop'+i).css('top',dropTop );
+    }
+}
+createRain();
+</script>
+<!--
+背景渐变
+     两种方法D:\Eclipse\jquery\jquery-1.10.2.min.js
+         color-stop:
+             background:webkit-gradient(linear,a,b, c,d,
+             colo-stop(e,颜色)),
+             colo-stop(e,颜色))'
+             colo-stop(e,颜色));
+                 参数解析：
+                    linear:线性渐变
+                    a,b:分别对应x,y方向渐变的起始位置
+                    c,d:分别对应x,y方向的终点位置
+                    color-stop代表渐变位置及颜色
+
+         from-to:
+         background:webkit-gradient(linear,a,b, c,d,
+             from(),to());
+            Math.random
+-->
+</body>
+</html>
+

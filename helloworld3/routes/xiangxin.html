@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<%
+response.ContentType="text/xml"
+response.Write("<?xml version='1.0' encoding='ISO-8859-1'?>")
+response.Write("<note>")
+    response.Write("<from>Jani</from>")
+    response.Write("<to>Tove</to>")
+    response.Write("<message>Remember me this weekend</message>")
+    response.Write("</note>")
+%>
+<?php
+header("Content-type: text/xml");
+echo "<?xml version='1.0' encoding='utf-8'?>";
+echo "<note>";
+    echo "<from>Jani</from>";
+    echo "<to>Tove</to>";
+    echo "<message>Remember me this weekend</message>";
+    echo "</note>";
+?>
+</body>
+</html>

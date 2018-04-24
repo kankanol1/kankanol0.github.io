@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .bubble{
+            display: block;
+
+        }
+    </style>
+</head>
+<body>
+<canvas class = "bubble">
+
+</canvas>
+<script>
+    /*
+        程序员能力
+            1：语法、算法、api
+            2：程序思维，项目逻辑
+        1：设置浏览器和宽高一致
+            1.1、获取canvas元素
+            1.2、获取浏览器窗口宽高
+            1.3、设置元素宽高
+            1.4、当浏览器窗口发生变化，重新获取宽高并给canvasshezhi
+        2 如何利用cavvas绘制图形
+             2.1、获取canvas可以绘制图形的区域
+             2.2、拿笔，沾墨
+             2.3、构思画图
+             2.4、提笔作画
+           4,绘制10086个圆
+               4.1、位置，
+               4.2、颜色，
+               4.3、运动方向，
+               4.4、大小
+               圆的DNA：
+
+               面向对象：人
+               DNA
+               基因
+
+
+     */
+    var canvas = document.querySelector(".bubble");
+    var w,h; ;//全局变量，变量提升
+    var aColor=["#DB()19","#ff6197","#00343F","#cc9b6a","#5Ed5E1"];
+    var aBubble=[];//存放小球球
+    ~~function setSize() {
+        window.onresize = arguments.callee;
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = w;
+        canvas.height = h;
+    }();
+    var canCon = canvas.getContext("2d");//2.1
+    /*
+    canCon.fillStyle="white";//2.2
+    canCon.arc(233,233,66,0,2*Math.PI);//2.3圆心位置，x,y,半径r
+    canCon.fill();
+    */
+
+    var y = 100;
+    var x = 100;
+    setInterval(function(){
+        canCon.beginPath();//把笔抬起来
+        canCon.clearRect(0,0,w,h);//擦除图形擦一个矩形区域左上角
+        canCon.fillStyle = "red";//2.2
+        canCon.arc(x++,y++,66,0,2*Math.PI);//2.3圆心位置，x,y,半径r
+        canCon.fill();
+    },1000/60);//每隔t毫秒执行一次function
+</script>
+
+</body>
+</html>

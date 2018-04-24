@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+    //console.log(xmlhttp);
+    //} else {// code for IE6, IE5// xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");}
+    xmlhttp.open("GET","cd_catalog.xml",false);
+    console.log(xmlhttp);
+    xmlhttp.send();
+    console.log(xmlhttp);
+    xmlDoc=xmlhttp.responseXML;
+    var x=xmlDoc.getElementsByTagName("CD");
+    document.write("Artist: "+x[0].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue+"<br />");
+    document.write("Title: "+x[0].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue+"<br />");
+    document.write("Year: "+x[0].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue+"<br />");
+    document.write("<table border='1'>");
+
+    for (var i=0;i<x.length;i++)
+    {
+        document.write("<tr><td>");
+        document.write(x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue);
+        document.write("</td><td>");
+        document.write(x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue);
+        document.write("</td></tr>");
+    }
+    document.write("</table>");
+</script>
+
+</body>
+</html>

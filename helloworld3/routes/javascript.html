@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*
+    function Accommodation(){}
+    Accommodation.prototype = {
+        floors: 0,
+        rooms: 0,
+        sharedEntrance : false,
+        lock: function(){document.writeln("已经上锁"+"<br />");},
+        unlock:function(){document.writeln("已经解锁"+"<br />");}
+    };
+    //var aString ="hello world";
+    //var house = new Accommodation();
+    //var apartment = new Accommodation();
+    //Accommodation.prototype.alarm = function(){
+        //document.writeln("警告！！！"+"<br />");
+        //apartment.floors = 10;
+        //aString = "你好，祖国！";
+    //};
+    //alert(aString);
+    //alert(house.sharedEntrance);
+
+    //house.floors = 2;
+    //house.sharedEntrance = true;
+
+    //house.unlock();
+    //house.alarm();
+    /*
+    var myLibrary = {
+        myName:"Kankan"
+    };
+    function doSomething(){
+        var innerVariable = 123;
+        myLibrary.myName = "Fanny";
+        function doSomethingElse(){
+            innerVariable = 1234;
+        }
+        doSomethingElse();
+        alert(innerVariable);
+    }
+    doSomething();
+    alert(myLibrary.myName);
+    alert(innerVariable);
+    */
+    /*
+    var apartment = {
+        isLocked: false,
+        lock: function(){
+            var that = this;
+            this.isLocked = true;
+            function doSomething(){
+                alert(this === apartment);
+                alert(this === window);
+                alert(that === apartment);
+                that.isLocked = false;
+            }
+            doSomething();
+        }
+    };
+    apartment.lock();
+    alert(apartment.isLocked);
+    */
+    /*
+    function Accommodation(defaults){
+        defaults = defaults || {};
+        this.floors = defaults.floors || 0;
+        this.rooms = defaults.rooms || 0;
+        this.sharedEntrance = defaults.sharedEntrance || false;
+
+    }
+    Accommodation.prototype.isLocked = false;
+    Accommodation.prototype.lock = function(){
+        this.isLocked = true;
+    };
+    Accommodation.prototype.unlock = function(){
+        this.isLocked = false;
+    };
+    var house = new Accommodation({
+        floors:2,
+        rooms:7
+    });
+    var apartment = new Accommodation({
+        floors:1,
+        rooms:4,
+        sharedEntrance:true
+    });
+    document.writeln(house.floors +","+ apartment.rooms);
+    */
+    /*
+    function Accommodation(){}
+    Accommodation.prototype.lock = function(){
+        this.isLocked = true;
+        document.writeln("锁定");
+    };
+    Accommodation.prototype.unlock = function () {
+        this.isLocked = false;
+        document.writeln("解锁");
+    };
+    Accommodation.prototype.alarm = function () {
+        alert("警告");
+    };
+
+    function House(defaults){
+        defaults = defaults ||{};
+        this.floors = 2;
+        this.rooms = defaults.rooms || 7;
+    }
+    House.prototype = new Accommodation();
+    House.prototype.constructor = House;
+
+    var myHouse = new House();
+    var myNeighborsHouse = new House({
+        rooms:8
+    });
+    alert(myHouse.rooms);
+    alert(myNeighborsHouse.rooms);
+    myHouse.lock();
+    myNeighborsHouse.unlock();
+    alert(myHouse.constructor === House);
+    alert(myHouse.constructor === Accommodation);
+    alert(myNeighborsHouse instanceof House);
+    alert(myNeighborsHouse instanceof Accommodation);
+    */
+    /*
+    function Accommodation(){
+        this.isAlarmed = false;
+    }
+    var AlarmSystem = {
+        arm:function (message) {
+            this.isAlarmed =true;
+            //alert(message);
+        },
+        disarm:function (message) {
+            this.isAlarmed = false;
+            //alert(message);
+        }
+    };
+    var myHouse = new Accommodation();
+    AlarmSystem.arm.call(myHouse,"Alarm activated");
+    //alert(myHouse.isAlarmed);
+    AlarmSystem.disarm.apply(myHouse,["Alarm deactivated" ]);
+    //alert(myHouse.isAlarmed);
+    var add = function(){
+        var total = 0;
+        for (var index = 0;index < arguments.length;index++){
+            total  += arguments[index];
+        }
+        return total;
+    };
+    document.writeln(add(3,4,6,7,8,98));
+    */
+    /*
+    var Accommodation = (function(){
+        function Accommodation(){}
+        var _isLocked  = false,
+            _isAlarmed = true,
+            _alarmMessage = "Alarm activated";
+        function _alarm(){
+            _isAlarmed = true;
+            alert(_alarmMessage);
+        }
+        function _disableAlarm(){
+            _isAlarmed = false;
+        }
+        Accommodation.prototype.lock = function () {
+            _isLocked = true;
+            _alarm();
+        };
+        Accommodation.prototype.unbind = function () {
+            _isLocked = false;
+            _disableAlarm();
+        };
+        Accommodation.prototype.getIsLocked = function () {
+            return _isLocked;
+        };
+        Accommodation.prototype.setAlarmMessage = function (message) {
+            _alarmMessage = message;
+            return _alarmMessage;
+        };
+        return Accommodation;
+
+    }());
+    var house = new Accommodation();
+    //house.lock();
+    //alert(house._alarm);
+    //alert(house._isLocked);
+    //document.writeln(house.getIsLocked());
+    house.setAlarmMessage("警报开启");
+    house.lock();
+    */
+
+    var Class = (function () {
+        function create(classDefinition,parentPrototype){
+            var _NewClass = function(){
+                if(this.initialize && typeof this.initialize === 'function'){
+                    this.initialize.apply(this.arguments);
+                }
+            },
+                _name;
+            if(parentPrototype){
+                _NewClass.prototype = new parentPrototype.constructor();
+                for(_name in parentPrototype){
+                    if(parentPrototype.hasOwnProperty(_name)){
+                        _NewClass.prototype[_name] = parentPrototype[_name];
+                    }
+                }
+            }
+            function polymorph(thisFunction,parentFunction){
+                return function(){
+                    var output;
+                    this._parent = parentFunction;
+                    output = thisFunction.apply(this,arguments);
+                    delete this._parent;
+                    return output;
+                };
+                for(_name in classDefinition){
+                    if(parentPrototype && parentPrototype[_name] &&typeof classDefinition[_name] === 'function'){
+                        _NameClass.prototype[_name] = polymorph(classDefinition[_name],parentPrototype[_name]);
+                    }else{
+                        _NewClass.prototype[_name] = classDefinition[_name];
+                    }
+                }
+            }
+            _NewClass.extend = extend;
+            return _NewClass;
+        }
+        function extend(classDefinition){
+            return create(classDefinition,this.prototypr);
+        }
+        return {
+            create:create
+        };
+    }());
+
+    var Accommodation = Class.create({
+        isLocked:true,
+        isAlarmed:true,
+        lock:function(){this.isLocked = true},
+        unlock:function(){this.isLocked = false;},
+        initialize:function(){this.unlock();}
+    });
+
+    var House  = Accommodation.extend({
+        floors:2,
+        lock:function(){
+            this._parent();
+            alert("Number of floors locked:" + this.floors);
+        }
+    });
+    var myAccommodation = new Accommodation();
+    alert(myAccommodation instanceof Accommodation);
+    alert(myAccommodation instanceof House);
+    var myHouse = new House();
+    alert(myHouse.isLocked);
+   // myHouse.lock();
+    alert(myHouse.isLocked);
+    alert(myHouse instanceof House);
+    alert(myHouse instanceof Accommodation);
+</script>
+
+</body>
+</html>

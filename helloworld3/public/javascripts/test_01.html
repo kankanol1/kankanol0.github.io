@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+</head>
+<body >
+<script type="text/javascript">
+    for(var i=0;i<10;i++){
+        for(var j=1;j<=i;j++){
+           // document.writeln(i+"*"+j+"="+i*j+"  ");
+        }
+        //document.writeln("<br />");
+    }
+console.log("Hello World!");
+    console.log(Math.sin(2));
+    var sum = 1;
+    var flag = 0;
+    while(flag<10){
+        sum *= 2;
+        flag +=1;
+    }
+document.writeln("sum = " + sum + ", flag = " + flag+"<br/>");
+    for(var i=20; ;i++){
+        if(i % 7==0){
+            document.writeln(i);
+            break;
+        }
+    }
+    function func( a,b){
+        return a*b;
+    }
+
+    function haha(ha){
+        return function hehe(he){
+            return ha + he;
+        };
+    }
+    var heihei = haha("你好，");
+    console.log(heihei("祖国！"));
+</script>
+</body>
+</html>

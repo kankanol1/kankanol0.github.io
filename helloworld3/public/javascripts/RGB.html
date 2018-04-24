@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Callbacks</title>
+<script type="text/javascript">
+    //<![CDATA[
+
+    function checkColor(element,index,array) {
+        return (element >= 0 && element <256);
+    }
+    function checkCount(element,index,array) {
+        return(element.length == 3)
+    }
+    function testingCallbacks() {
+        var colors = new Array();
+        colors[0] = [0,262,255,5];
+        colors[1] = [255,255,255];
+        colors[2] = [255,0,0];
+        colors[3] = [0,255,0];
+        colors[4] = [255,255,12034];
+        var testedColors = new Array();
+        for (var i in colors) {
+            testedColors[i] = colors[i].filter(checkColor);
+        }
+        document.writeln("<h3> 第一次筛选：</h3>");
+        for (i in testedColors){
+            document.writeln(testedColors[i]+"<br/>");
+        }
+        var newTested = testedColors.filter(checkCount);
+        document.writeln("<br/><h3>第二次筛选：</h3>");
+        for (i in newTested){
+            document.writeln(newTested[i]+"<br/>");
+        }
+    }
+    //]]>
+</script>
+</head>
+<body onload="testingCallbacks()">
+
+</body>
+</html>

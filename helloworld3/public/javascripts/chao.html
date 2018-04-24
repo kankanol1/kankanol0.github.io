@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en"/>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="Keywords" content=""/>
+    <meta name="Description" content=""/>
+
+    <title>老司机</title>
+
+    <style type="text/css">
+
+        body{
+
+            font-size:10px;
+            width: 100%;
+        }
+        *{margin: 0;padding: 0;}
+        ul{list-style-type: none;
+            width:100%;
+            height:46px;
+            margin: 0px;
+            padding: 0px;}
+        a{text-decoration: none;color:#000;}
+        #nav{
+            float:left;
+            background: white;
+            position: relative;
+            /*
+            display: block;
+            */
+            width: 650px;
+            height: 58px;
+            border-bottom:1px solid red ;}
+        .item{float: left;margin: 1px;padding:10px 10px;
+            font-family: "微软雅黑";display: block;}
+        .bl a{
+            font-weight: bold;
+            color:deeppink ;
+        }
+        .div1{
+
+            margin:0;
+            padding:1px;
+            height:100px;
+            width:100%;
+        }
+        .div3{
+            margin:0;
+            padding:1px;
+            height:1000px;
+            width:100%;
+        }
+        .dh_left{
+            align:center;
+            float:left;
+            margin:0;
+            padding:20px 20px;
+            height:100%;
+            width:60px;
+        }
+        .dh_right{
+            float:left;
+            margin:0;
+            padding:20px 20px;
+            height:100%;
+            width:60px;
+        }
+        .div2{
+            margin:0;
+            padding:1px;
+            height:60px;
+            width:1200px;
+
+        }
+        .p2l{
+            font-size:12px;
+            margin:0;
+            padding:17px 20px;
+            width:70px;
+            height:100%;
+
+        }
+    </style>
+</head>
+<body>
+<div class="div1" >
+    <img  src="01.png" height="100" width=100% />
+</div>
+<div class="div2">
+    <div class="dh_left">
+
+    <a href=""><p><img src="02.png" height=40px width=90px align="center"/>
+        淘宝标签</p></a>
+
+    </div>
+    <div id="nav">
+    <ul><!--无序列标签 并列结构-->
+        <li class="item"><a href="http://www.baidu.com">首页
+        </a></li>
+        <li class="item"><a href="javascript:;">最新
+        </a></li>
+        <li class="item"><a href="javascript:;">上衣
+        </a></li>
+        <li class="item"><a href="javascript:;">裙子
+        </a></li>
+        <li class="item"><a href="javascript:;">裤子
+        </a></li>
+        <li class="item"><a href="javascript:;">包包
+        </a></li>
+        <li class="item"><a href="javascript:;">配饰
+        </a></li>
+        <li class="item"><a href="javascript:;">更多
+        </a></li>
+        <li class="item"><a href="javascript:;">鞋子
+        </a></li>
+        <li class="item bl"><a href="javascript:;">明星同款
+        </a></li>
+        <li class="item bl"><a href="javascript:;">中国馆
+        </a></li>
+        <li class="item bl"><a href="javascript:;">团购
+        </a></li>
+        <li class="item bl"><a href="javascript:;">H范儿
+        </a></li>
+        <li class="item bl"><a href="javascript:;">福利社
+        </a></li>
+
+    </ul>
+    </div>
+    <div class="dh_right">
+        <a href=""><img src="03.png" height=40px width=90px/></a>
+    </div>
+</div>
+<div class="div3">
+    <img  src="01.jpg" height="1000" width=100%/>
+</div>
+<script type="text/javascript"  src = "jquery-1.10.2.min.js"></script>
+<script type="text/javascript" >
+var a_num = $("#nav").offset().top;
+
+console.log(a_num);
+$(window).scroll(function(){
+    var b_num = $(window).scrollTop();
+    if(b_num>a_num){
+        //$("#nav").css({position:"fixed"});
+    }
+});
+</script>
+
+</body>
+</html>
+<!--
+W3C标准 HTML5标准 规范
+样式优先级影响样式
+
+
+HTML 结构 声明页面的结构 超文本标记语言
+css  表现 实实在在的让标签在页面中体现
+js   行为
+命名 区分 international
+class 一个或者多个
+id    唯一
+大小，位置 背景
+特效的原理：
+   JS在一定条件下改变元素的样式以及属性的值产生特效
+
+
+
+高内聚，低耦合
+
+-->

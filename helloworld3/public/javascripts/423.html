@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .bubble{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<canvas class = "bubble"></canvas>
+<script>
+    /*
+        程序员能力
+            1：语法、算法、api
+            2：程序思维，项目逻辑
+        1：设置浏览器和宽高一致
+            1.1、获取canvas元素
+            1.2、获取浏览器窗口宽高
+            1.3、设置元素宽高
+            1.4、当浏览器窗口发生变化，重新获取宽高并给canvasshezhi
+        2 如何利用cavvas绘制图形
+             2.1、获取canvas可以绘制图形的区域
+             2.2、拿笔，沾墨
+             2.3、构思画图
+             2.4、提笔作画
+           4,绘制10086个圆
+               4.1、位置，
+               4.2、颜色，
+               4.3、运动方向，
+               4.4、大小
+               圆的DNA：
+
+               面向对象：人
+               DNA
+               基因
+
+
+     */
+    var canvas = document.querySelector(".bubble");
+    var w,h; ;//全局变量，变量提升
+    var aColor = ["#DB()19","#ff6197","#00343F","#cc9b6a","#5Ed5E1"];
+    var aBubble = [];//存放小球球
+    ~~function setSize() {
+        window.onresize = arguments.callee;
+            w = window.innerWidth;
+            h = window.innerHeight;
+            canvas.width = w;
+            canvas.height = h;
+    }();
+    var canCon = canvas.getContext("2d");//2.1
+    /*
+    canCon.fillStyle="white";//2.2
+    canCon.arc(233,233,66,0,2*Math.PI);//2.3圆心位置，x,y,半径r
+    canCon.fill();
+    */
+    /*
+    var y = 100;
+    var x = 100;
+    setInterval(function(){
+        canCon.beginPath();//把笔抬起来
+        canCon.clearRect(0,0,w,h);//擦除图形擦一个矩形区域左上角
+        canCon.fillStyle = "red";//2.2
+        canCon.arc(x++,y++,66,0,2*Math.PI);//2.3圆心位置，x,y,半径r
+        canCon.fill();
+    },1000/60);//每隔t毫秒执行一次function
+    */
+    function random(min,max){
+        return Math.random()*(max-min)+min;
+    }
+    function Bubble() {};//小球球dna
+    Bubble.prototype = {//属性
+        init:function () {//属性方法
+            //canCon.clearRect(0,0,w,h);
+            this.x = random(0,w);//细分属性属性
+            this.y = random(0,h);
+            this.r = random(1,3);//初始半径
+            this.color = aColor[Math.floor(random(0,5))];
+            this.vx=random(-1,1);
+            this.vy=random(-1,1);
+            //canCon.clearRect(0,0,w,h);
+        },
+        draw:function () {
+            //canCon.clearRect(0,0,w,h);
+            canCon.beginPath();//把笔抬起来
+
+            canCon.fillStyle = this.color;//2.2
+            canCon.arc(this.x,this.y,this.r,0,2*Math.PI);
+            //2.3圆心位置，x,y,半径r
+            canCon.fill();
+            //canCon.clearRect(0,0,w,h);
+        },
+        move:function(){
+            //canCon.clearRect(0,0,w,h);
+            this.x+=this.vx;
+            this.y+=this.vy;
+            this.draw();
+            if(this.x-this.r<0 || this.x+this.r>w){
+                this.vx=-this.vx;
+            }
+            if(this.y-this.r<0 || this.y+this.r>h){
+                this.vy=-this.vy;
+            }
+        }
+    }
+    var bubble = new Bubble();//生成小球球
+    bubble.init();
+    bubble.draw();
+    function create(num){
+        for(var i=0;i<num;i++){
+
+            var bubble = new Bubble();//生成小球球
+
+            bubble.init();
+            bubble.draw();
+            //canCon.clearRect(0,0,w,h);
+            aBubble.push(bubble);//每生成一个小球球就放在数组中
+            //canCon.clearRect(0,0,w,h);
+        }
+    }
+    create(1086);
+    setInterval(function(){
+        canCon.clearRect(0,0,w,h);
+        for(var item of aBubble){
+            item.move();
+        }
+    },1000/60);
+</script>
+</body>
+</html>
+<!--
+动画：
+     会动的画
+     1s:连续播放1/60s多张静态的图形  视觉误差
+     帧：24帧 肉眼分辨
+        静态图片要发生比那话
+        60帧
+
+        多次用到for循环
+        复用性代码
+        封装成函数
+-->

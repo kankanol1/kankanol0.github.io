@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><!-- 页面的头部 页面的信息 不会显示-->
+        <!--声明页面的字符编码
+        防止乱码
+        dw开发工具
+
+         XHMl-->
+        <meta charset="UTF-8" />
+        <title>QQ客服咨询</title>
+        <style>
+            *{margin:0;padding:0;}/*通配符 所有元素*/
+            .box{
+                width:160px;/*高度 px：像素*/
+                height:220px;/*高度*/
+                /*
+                background:#3399ff;背景*/
+                position: relative;
+                /*
+                margin-left:auto;
+                margin-top:200px;
+                */
+                margin:200px 0 0 auto;/* 上 右 下 左  顺时针方向*/
+                /*
+               原理很重要
+               父亲的宽度 - 本身元素的宽度 = auto
+               */
+
+            }
+            .qq{
+                width: 158px;
+                position: absolute;
+                left: 0;
+            }
+            .top{
+                width: 158px;
+                height: 18px;
+            }
+            .center{
+                text-align:center;
+                background: url("image/17.png ");
+                /*
+                padding-top:15px;
+                */
+                padding:15px 0;/* 上下 左右  */
+            }
+            .teacher-qq{
+                font-size:12px;/*字体大小*/
+                line-height: 30px;
+                color:#ffff;
+                width: 140px;
+                margin:auto;
+            }
+            .hide{
+                position: absolute;/*绝对定位*/
+                top: 0;
+                right:-80px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div class="qq">
+                <div class="top"><img src="image/19.png" width=100% />
+                </div>
+                <div class="center">
+                    <img src="image/18.png" width="100" height="100" />
+                    <div class="teacher-qq">
+                        <img src="image/qq.png" align="absmiddle"/>
+                        报名：66104737
+                        <hr />
+                    </div>
+                </div>
+                <div class="btn">
+                    <img src="image/16.png" width=100% />
+                </div>
+            </div>
+            <div class="hide">
+                <img src="image/18.png" />
+            </div>
+        </div>
+        <script src="jquery-1.10.2.min.js"></script>
+        <script>
+            /*
+            谁干了 什么事 发生了什么情况
+            */
+            $(".btn").click(function(){
+                $(".qq").animate({left:"160px"},function(){
+                    $(".hide").animate({right:0},500)
+                })
+            });
+            $(".hide").click(function(){
+                $(".hide").animate({right:"-80px"},function(){
+                    $(".qq").animate({left:0},500)
+                })
+            });
+        </script>
+    </body>
+</html>
+<!--
+bat(百度 腾讯 阿里)
+text-align-center
+    div + css
+    自动平铺
+    id     在页面中只能出现一次   确定全局只有一个便签元素
+    class  表示一个类 拥有相同的特征的区块 两个区块以上拥有相同的特征
+    命名原则：英语语义命名
+    大小:高宽
+    位置:
+    其他（背景 字体 边框）
+    宽度默认100%
+    debug:开发者调试工具
+    三到五年，前站：前端+后台+服务器
+    后台：枯燥，
+    浏览器自带
+    js 特效
+    js 控制元素的样式 属性值的改变
+    ECMAscript  js标准ES5，6,7,8
+     + DOM节点
+     JQuery
+     （前端三板斧）
+     HTML XHTML XML  扩展标记语言
+     CSS  样式预编译 sass less css3
+     JS   工资高低的一个基本
+
+         页面 特效 交互 体验 功能 平台
+         webApp 手机应用陈旭
+         HTML5 游戏开发工程师
+         web3d 3d开发工程师
+         框架开发师
+         全栈工程师
+
+-->

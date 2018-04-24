@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        body{
+            background: #d8e7fa;
+        }
+        .box{
+            position:relative;
+            margin: 100px auto 0;
+            width:400px;
+            height: 680px;
+            border: 2px #9b9b9b solid;
+        }
+        .box .pic{
+            width: 400px;
+            height: 600px;
+            position: relative;
+        }
+
+        .box .pic img{
+            width: 400px;
+            height: 600px;
+        }
+        .box .list img{
+            width: 50px;
+            height: 50px;
+
+        }
+        .box .pic .cover {
+            position: absolute;
+            display: none;
+            width: 150px;
+            left: 0;
+            top: 0;
+            height: 150px;
+            /*
+             background-image:url("01.jpg");
+             */
+            background: black;
+            opacity: 0.5;
+        }
+        .box .list{
+            display: flex;
+            height: 80px;
+        }
+        .box .list li{
+            margin: auto;
+            width: 50px;
+            height: 50px;
+            border:1px  #9b9b9b solid;
+        }
+        .box .list .border {
+            border: 2px red solid;
+        }
+        .box .detail{
+            position: absolute;
+            display: none;
+            top: 0;
+            left: 400px;
+            width: 400px;
+            height: 600px;
+            border: 1px #888 solid;
+            /*
+            background-image: url("image/01.jpg");
+            */
+            background-size: 266.67%;
+        }
+
+    </style>
+    <!--业务需求
+    用户需求
+
+    业务流程
+        1，选择不同的图片
+           1.1 下面这块区域会让上面改变
+        2,精确选择
+          2.1完善静态区域
+
+    -->
+</head>
+<body>
+<div class="box">
+    <div class="pic">
+        <img src="image/01.jpg" alt = "" width='400' height='600' />
+        <div class="cover"></div>
+    </div>
+    <ul class="list">
+        <li><img src="http://m.qpic.cn/psb?/V13jmkCB4N1A07/aSRGNzRDobqJ.H55pbTmLrW3t39oYFFlkBSEzujSxaA!/c/dCEBAAAAAAAA&rf=mood_app" class="border" alt=""></li>
+        <li><img src="http://b227.photo.store.qq.com/psb?/V14ED87N3IBPe2/1eH3VIqN7CSvkzrRdUyOLjXmUKvcVuUDMuXo3t4pMAY!/b/dOMAAAAAAAAA&bo=wAY4BAAAAAAFB94!&rf=viewer_4" alt="" /></li>
+        <li><img src="http://m.qpic.cn/psb?/V13jmkCB4N1A07/CsOI7sla3Zo*GB1d5Ji8xd7*6w9Uou8NRVdObOSQ1eo!/b/dCIBAAAAAAAA" alt="" /></li>
+        <li><img src="http://b289.photo.store.qq.com/psb?/V13jmkCB4N1A07/**NpasGU.imxKKqPaWL.wjHIhQUV8abOGuPeCq1O1no!/b/dCEBAAAAAAAA&bo=gAc4BIAHOAQRECc!&rf=viewer_311" alt="" /></li>
+        <li><img src="http://a3.qpic.cn/psb?/V13jmkCB4N1A07/l.z5psmLSp5e1p4H5kaJmpeMbn*Q2YZsY7nPqwPs9Jw!/b/dCIBAAAAAAAA&ek=1&kp=1&pt=0&bo=wAMABcADAAURECc!&vuin=2267131304&tm=1524272400&sce=50-1-1&rf=viewer_311" alt="" /></li>
+        <li><img src="http://a3.qpic.cn/psb?/V13jmkCB4N1A07/CaHZCIdKHKBC6z4T4dRfu4ewbRaWHWHiCWp7JvF*NWk!/b/dCIBAAAAAAAA&ek=1&kp=1&pt=0&bo=oAU4BKAFOAQRECc!&vuin=2267131304&tm=1524272400&sce=50-1-1&rf=viewer_311" alt="" /></li>
+    </ul>
+    <div class="detail"></div>
+</div>
+<!--
+<script type="text/javascript"  src = "jquery-1.10.2.min.js"></script>
+-->
+<script type="text/javascript">
+    var box = document.querySelector('.box');
+    var detail =document.querySelector('.detail');
+    var img=document.querySelector('.box .pic img');
+    var cover=document.querySelector('.cover');
+    var imgList=document.querySelectorAll('.box .list img');
+    var show =0;
+    for (let  i=0;i<imgList.length;i++) {
+        imgList[i].onmouseover= function(){//鼠标放在地张图片更改地址
+            console.log(i);
+            imgList[show].className = ' ';
+            this.className='border';
+            show =i;
+            img.src = this.src;
+            detail.style.backgroundImage = 'url('+imgList[i].src+')';
+        }
+    }
+
+    window.addEventListener("mousemove", function(e){
+        let px = e.clientX-box.offsetLeft;
+        let py = e.clientY-box.offsetTop;
+        if(px>0 && py>0 && px<400 && py<600) {
+            cover.style.display = 'block';
+            detail.style.display = 'block';
+
+            if (px < 75) {
+                px = 75;
+            }
+            if (py < 75) {
+                py = 75;
+            }
+            if (px > 325) {
+                px = 325;
+            }
+            if (py > 525) {
+                py = 525;
+            }
+            cover.style.left = px - 75+'px';
+            cover.style.top = py - 75+'px';
+            detail.style.backgroundPosition=(px-75)*100/250+'%'+(py-75)*100/450+'%';
+        }else{
+            cover.style.display = 'none';
+            detail.style.display = 'none';
+        }
+    })
+
+</script>
+
+</body>
+</html>

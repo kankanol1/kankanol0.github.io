@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>²ËÄñ½Ì³Ì(runoob.com)</title>
+<style>
+</style>
+</head>
+<body>
+
+<img id = "myimg" src="http://www.runoob.com/wp-content/uploads/2016/04/img_lights.jpg" alt="Northern Lights, Norway" width="300" height="200" />
+
+
+<div id="myModal" class="modal">
+<span class="close">hahh</span>
+<img class="modal-content" id="img01">
+
+
+
+</div>
+</body>
+</html>

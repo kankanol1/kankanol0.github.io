@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        .main{
+            overflow:hidden;/*g规定元素溢出如何显示 ，隐藏*/
+            width:670px;
+            /*
+            background-color: hotpink;代码原则：越简单越好 */
+            border:1px solid #9b9b9b; /*width style color*/
+
+            margin:200px auto 0;
+            /* 上下 左右
+            margin:200px auto 0:上 左右 下
+            margin-top;margin-left;margin-bottom;margin-right
+            margin:0 0 0 0    上 右 下 左
+            */
+            box-shadow:20px 20px 5px #9b9b9b;/*CSS3 中的盒子阴影*/
+            /*图片创建边框*/
+            /*border-image:url("image/little.png") 30 30 stretch;*/
+        }
+        ul li{
+            overflow: hidden;
+            position:relative;/*相对定位 */
+            float:left;/*浮动  让元素横排显示  特性向特定方向浮动 脱离文档流，
+            在页面中不占位置父元素塌陷*/
+            border:1px solid pink;
+            list-style:none;
+            width:200px;
+            height:200px;
+            background:url("http://p3.so.qhmsg.com/bdr/326__/t01da95760f9fa99608.jpg")no-repeat center/cover ;
+            margin:10px;
+            border-radius:25px;/*CSS3 中自带的圆角*/
+            /*box-shadow:10px 10px 5px #9b9b9b;CSS3 中的盒子阴影*/
+            /*背景图片 位置 大小padding:10px 10px 10px 10px;*/
+        }
+        /*css3 选择第几个元素括号自定义*/
+        ul li:nth-child(2){
+            background-image:url("http://p3.so.qhimgs1.com/bdr/326__/t011b036b5e058bc613.jpg");
+        }
+        ul li:nth-child(3){
+            background-image:url("http://p0.so.qhimgs1.com/bdr/326__/t01691202bdb922694a.jpg");
+        }
+        ul li:nth-child(4){
+            background-image:url("http://p0.so.qhimgs1.com/bdr/326__/t0126fc9d3a9aea1e60.jpg");
+        }
+        ul li:nth-child(5){
+            background-image:url("http://p0.so.qhimgs1.com/bdr/326__/t0197f4726bf7d05a30.jpg");
+        }
+        ul li:nth-child(6){
+            background-image:url("http://p2.so.qhimgs1.com/bdr/326__/t01c742e5bbea8a4662.jpg");
+        }
+        /*
+        ::before 伪元素选择器  通过样式在元素前面添加内容
+        不支持宽高，
+        相对父元素定位
+        */
+        ul li::before{
+            content:'';
+            position:absolute;/*是元素支持宽高*/
+            width: 100%;
+            height: 100%;
+            background-color:rgba(150,50,100,0.5);
+            -webkit-transform: rotate(55deg) translateX(-320px)scale(1.8);
+
+            /*变换 rotate旋转 scale 放大*/
+            -webkit-transition:0.5s;
+
+        }
+        /*hover伪类选择器
+        当鼠标划过li时，让：：：before移动位置
+        */
+        ul li:hover::before{
+            -webkit-transform: rotate(55deg) translateX(-150px) scale(1.8);
+        }
+        ul li::after{
+            content:'';
+            position:absolute;/*是元素支持宽高*/
+            width: 100%;
+            height: 100%;
+            background-color:rgba(150,50,100,0.5);
+            -webkit-transform: rotate(55deg) translateX(320px)scale(1.8);
+            /*变换 rotate旋转 scale 放大*/
+            -webkit-transition:0.5s;
+
+        }
+        ul li:hover::after {
+            -webkit-transform: rotate(55deg) translateX(150px) scale(1.8);
+        }
+        ul li div{
+            overflow:hidden;
+            top: 40px;
+            position:absolute;
+            width: 100%;
+            z-index: 2;/*层级 定位下 才可以比较层级*/
+            height: 0;
+
+            background-color:rgba(0,0,0,.5) ;
+            color:#fff;
+            text-align: center;
+            -webkit-transform: rotate(55deg);
+
+            transition: 0.5s ;
+        }
+        ul li:hover div{
+            height: 120px;
+            -webkit-transform: rotate(0);
+        }
+        ul li h3{
+            height: 45px;
+            border-bottom:2px solid #fff;
+            line-height: 45px;/*行高 值等于高度，是文字上下居中*/
+
+        }
+        ul li p{
+            margin-top: 10px;
+
+        }
+        .class1{
+            margin:50px;
+            text-shadow: 5px 5px 5px #7b7b7b;
+            text-align:center;
+            color:red;
+        }
+        .class2{
+            color:white;
+            text-align: center;
+            padding: 20px;
+        }
+        .box{
+            width:100%;
+            background-color:#00B7FF;
+            box-shadow: 10px 10px 5px #888888;
+        }
+        .card {
+
+            width:250px;
+            height: 250px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+            margin: auto;
+
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            height:180px;
+            padding: 10px;
+            font-size: 50px;
+            text-align: center ;
+
+        }
+        .container {
+            padding: 10px;
+            text-align: center;
+        }
+        .boxDate{
+
+            background: #f3ff60;
+            margin:20px auto;
+            border: 2px solid #9b9b9b;
+
+        }
+        .boxDate::before{
+            content: "当天日期信息";
+            /*
+            text-shadow:10px 10px 1px #000aff;
+            */
+            font-size: 20px;
+            color: #000aff;
+            font-weight:bold;
+
+            margin-left:20px;
+            margin-top:100px;
+        }
+        .test {
+            white-space:nowrap;
+            width:12em;
+            overflow:hidden;
+            border:1px solid #000000;
+        }
+        .boxRain1{
+            height:400px;
+            /*
+            width: 800px;
+            */
+            margin:20px auto;
+        }
+        .boxRain{
+            height:400px;
+            /*
+            width: 800px;
+            */
+            margin: 20px auto;
+            background: -webkit-gradient(linear,0% 0%,0% 100%,
+            from(rgba(13,52,58,1)),to(#000));
+            overflow: hidden;
+        }
+        .boxRain::before{
+            content: "流星雨";
+            /*
+            text-shadow:10px 10px 1px #000aff;
+            */
+            font-size: 20px;
+            color: #fff;
+            margin-left:20px;
+            margin-top: 100px;
+
+            font-weight:bold;
+        }
+        .drop {
+            width: 90px;
+            height: 1px;
+            background: red;
+            margin-top: 50px;
+            background: linear-gradient(to right,rgba(10, 20,50, 1) , rgba(255, 255, 255, .7));
+            /* 标准的语法 */
+            /*
+            background: -webkit-gradient(linear, 0% 0%, 0% 100%,
+            from(rgba(10, 20,50, 1)), to(rgba(255, 255, 255, .7)));
+            */
+            position: absolute;
+            animation: move 30s infinite;
+        }
+        @keyframes move {
+            from{
+                margin:1100px 0 0 -10000px;
+
+            }
+            to{
+                margin:1100px 20000px 0 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <ul><!-- 黑色圆点开头的无序列表  块级元素 默认占据一行-->
+        <li>
+            <div>
+                <h3>黑白风采</h3>
+                <p>黑白青春色彩的诱惑</p>
+            </div>
+        </li><!-- 块级元素 默认占据一行-->
+        <li>
+            <div>
+                <h3>职场风采</h3>
+                <p>做一个有能力的女人</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <h3>清纯风采</h3>
+                <p>白色系列之清纯妹子针织毛衣</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <h3>魔力风采</h3>
+                <p>闭目羞花，成鱼落雁之什么衣服啊</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <h3>魔力风采</h3>
+                <p>激发了佛为傲为奥女的哦啊SVN</p>
+            </div>
+        </li>
+        <li>
+            <div>
+                <h3>清纯风采</h3>
+                <p>白色系列之清纯妹子针织毛衣</p>
+            </div>
+        </li>
+    </ul>
+</div>
+<div>
+    <div class="box">
+        <h1 class="class1">明天的你一定会感谢现在拼命地自己！</h1>
+    </div>
+    <div class="boxDate">
+        <div class="card">
+            <div class="header">
+                <h1 id ="day" class="class2" >1</h1>
+            </div>
+            <div class="container">
+            <p id="date" >January 1, 2016</p>
+            </div>
+        </div>
+        <script>
+            var date = new Date();
+            var day = date.getDate();
+            var month = date.getMonth()+1;
+            var year = date.getFullYear();
+            document.getElementById("day").innerHTML=day;
+            document.getElementById("date").innerHTML=month+"-"+day+"-"+year;
+        </script>
+    </div>
+    <div>
+        <!--
+        <div class="test" style="text-overflow:ellipsis;">ellipsis北国风光，千里冰封，万里雪飘。望长城内外，惟余莽莽。</div>
+        <div class="test" style="text-overflow:clip;">clip北国风光，千里冰封，万里雪飘。望长城内外，惟余莽莽。</div>
+        <div class="test" style="text-overflow:'>>';">text-overflow北国风光，千里冰封，万里雪飘。望长城内外，惟余莽莽。北国风光，千里冰封，万里雪飘。望长城内外，惟余莽莽。</div>
+        -->
+    </div>
+    <div class="boxRain1">
+        <div class="boxRain">
+            <script src="http://cdn.static.runoob.com/libs/jquery/1.8.3/jquery.min.js"></script>
+            <script>
+                var nDrop = 800;
+                function random(minNum,maxNum) {
+                    return Math.floor(Math.random() * (maxNum - minNum +1)) + minNum;
+                }
+                function createRain(){
+                    for(var i=0;i<nDrop;i++ ){
+                        var dropLeft=random(-10000,20000);
+                        var dropTop=random(0,400);
+                        $('.boxRain').append('<div class="drop" id="drop'+i+'"></div>');
+                        $('#drop'+i).css('left', dropLeft);
+                        $('#drop'+i).css('top',dropTop );
+                    }
+                }
+                createRain();
+            </script>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<!--
+    div:
+        盒子 通用性的容器
+        用不容易控制
+-->
